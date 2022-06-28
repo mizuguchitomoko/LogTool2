@@ -28,27 +28,39 @@ namespace LogTool2
             //オープンファイルダイアログを表示する
             openFileDialog.FileName = "";
             var result = openFileDialog.ShowDialog();
-            openFileDialog.Filter = "Text File(*.txt;*.log)|*.txt;*.log"; //拡張子.logと.txt形式のファイルのみ許容する
-            var filePath = openFileDialog.FileName;
-            
-            string[] lines = System.IO.File.ReadAllLines(filePath);
-
-            foreach (string line in lines)//lineは行単体
+            if (result == DialogResult.OK)
             {
-                string [] row = line.Split(']');//row変数が各項目ばらばらになったものが入る
-                Class1 dto = new Class1(
-                    row[0],
-                    row[1],
-                    row[2]
-                    );
-                class1s.Add(dto);
+                openFileDialog.Filter = "Text File(*.txt;*.log)|*.txt;*.log"; //拡張子.logと.txt形式のファイルのみ許容する
+                var filePath = openFileDialog.FileName;
+
+                string[] lines = System.IO.File.ReadAllLines(filePath);
+
+                foreach (string line in lines)//lineは行単体
+                {
+                    if ((line.IndexOf("< Start Logging >") == -1) && (line.IndexOf("< Stop Logging  >") == -1))
+                    {
+
+                        string[] row = line.Split(']');//row変数が各項目ばらばらになったものが入る
+                        for (int i = 0; i < row.Length; i++)
+                        {
+                            Class1 dto = new Class1(
+                                row[0],
+                                row[1],
+                                row[2]
+                                );
+
+                            class1s.Add(dto);
+                        }
+                    }
+                }
+                dataGridView1.DataSource = class1s;//表示ができる
             }
-            dataGridView1.DataSource = class1s;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
+            
     }
 }
