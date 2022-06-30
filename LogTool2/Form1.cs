@@ -35,6 +35,8 @@ namespace LogTool2
 
                 string[] lines = System.IO.File.ReadAllLines(filePath);
 
+                class1s.Clear();//前回の表示をクリア
+
                 foreach (string line in lines)//lineは行単体
                 {
                     if ((line.IndexOf("< Start Logging >") == -1) && (line.IndexOf("< Stop Logging  >") == -1))
