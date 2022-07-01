@@ -41,18 +41,10 @@ namespace LogTool2
                 {
                     if ((line.IndexOf("< Start Logging >") == -1) && (line.IndexOf("< Stop Logging  >") == -1))
                     {
-
                         string[] row = line.Split(']');//row変数が各項目ばらばらになったものが入る
-                        for (int i = 0; i < row.Length; i++)
-                        {
-                            Class1 dto = new Class1(
-                                row[0],
-                                row[1],
-                                row[2]
-                                );
-
-                            class1s.Add(dto);
-                        }
+                        
+                        Class1 dto = new Class1(row[0],row[1],row[2]);
+                        class1s.Add(dto);
                     }
                 }
                 dataGridView1.DataSource = class1s;//表示ができる
