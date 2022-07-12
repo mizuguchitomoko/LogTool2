@@ -12,20 +12,23 @@ namespace LogTool2
         public Class1(
             string strData,
             string strType,
-            string strLog1
-           
+            string strLog1,
+            string strLog2
+
             )
         {
             StrDate = strData;
             StrType = strType;
             StrLog1 = strLog1;
-            
+            StrLog1 = strLog2;
+
 
         }
         public string StrDate { get; }
         public string StrType { get; }
         public string StrLog1 { get; }
-       
+        public string StrLog2 { get; }
+
 
 
     }

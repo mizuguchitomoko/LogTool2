@@ -43,7 +43,7 @@ namespace LogTool2
                     {
                         string[] row = line.Split(']');//row変数が各項目ばらばらになったものが入る
                         
-                        Class1 dto = new Class1(row[0],row[1],row[2]);
+                        Class1 dto = new Class1(row[0],row[1],row[2], row[3]);
                         class1s.Add(dto);
                     }
                 }
